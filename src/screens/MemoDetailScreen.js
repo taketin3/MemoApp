@@ -18,7 +18,7 @@ class MemoDetailScreen extends React.Component {
         <View style={styles.memoContent}>
           <Text>講座の内容す</Text>
         </View>
-        <CircleButton name="pencil" color="white" style={styles.editButton} />
+        <CircleButton name="pencil" color="white" style={styles.editButton} onPress={() => { this.props.navigation.navigate('MemoEdit'); }} />
       </View>
     );
   }
