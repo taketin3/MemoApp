@@ -2,7 +2,7 @@ import React from 'react';
 import {
   StyleSheet, View, TextInput, Text, TouchableHighlight,
 } from 'react-native';
-
+import firebase from 'firebase';
 
 class LoginScreen extends React.Component {
   state = {
@@ -12,10 +12,14 @@ class LoginScreen extends React.Component {
 
   // eslint-disable-next-line
   handleSubmit() {
-
-    // this.props.navigation.navigate('MemoEdit');
-
-    // Log in!!
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then((user) => {
+        this.props.navigation.navigate('Home');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // this.props.navigation.navigate('MemoList');
   }
 
   render() {
@@ -58,7 +62,6 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: '#eee',
-    color: '#999',
     height: 48,
     padding: 8,
     borderWidth: 1,
