@@ -8,6 +8,7 @@ import fontAwsome from '../../assets/fonts/fa-solid-900.ttf';
 const CustomIcon = createIconSet({
   pencil: '\uf303',
   plus: '\uf067',
+  check: '\uf00c',
 }, 'FontAwsome');
 
 class CircleButton extends React.Component {
@@ -36,7 +37,7 @@ class CircleButton extends React.Component {
       <View style={[styles.circleButton, style, { backgroundColor: bgColor }]}>
         {
           this.state.fontLoaded ? (
-            <CustomIcon name={name}  style={[styles.circleButtonTitle, { color: textColor }]} />
+            <CustomIcon name={name} style={[styles.circleButtonTitle, { color: textColor }]} />
           ) : null
         }
       </View>
