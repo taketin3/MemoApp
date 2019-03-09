@@ -19,7 +19,7 @@ class MemoListScreen extends React.Component {
       .then((querySnapshot) => {
         const tmpList = [];
         querySnapshot.forEach((doc) => {
-          tmpList.push(doc.data());
+          tmpList.push({ ...doc.data(), key: doc.id });
         });
         this.setState({ memoList: tmpList });
       })
