@@ -12,15 +12,15 @@ class MemoCreateScreen extends React.Component {
   }
 
   handlePress() {
-    const { params } = this.props.navigation.state;
-    console.log(params.currentUser.user.uid);
     const db = firebase.firestore();
-    db.collection(`users/${params.currentUser.user.uid}/memos`).add({
+    const { currentUser } = firebase.auth();
+    db.collection(`users/${currentUser.uid}/memos`).add({
       body: this.state.body,
       createdOn: new Date(),
     })
       .then((docRef) => {
         console.log('Document written with ID: ', docRef.id);
+        this.props.navigation.navigate('MemoList');
       })
       .catch((error) => {
         console.error('Error adding document: ', error);
