@@ -20,7 +20,8 @@ class MemoCreateScreen extends React.Component {
     })
       .then((docRef) => {
         console.log('Document written with ID: ', docRef.id);
-        this.props.navigation.navigate('MemoList');
+        this.props.navigation.goBack();
+        // this.props.navigation.navigate('MemoList');
       })
       .catch((error) => {
         console.error('Error adding document: ', error);

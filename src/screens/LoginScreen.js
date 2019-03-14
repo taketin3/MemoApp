@@ -1,6 +1,7 @@
 import React from 'react';
+import { NavigationActions, StackActions } from 'react-navigation';
 import {
-  StyleSheet, View, TextInput, Text, TouchableHighlight,
+  StyleSheet, View, TextInput, Text, TouchableHighlight, TouchableOpacity,
 } from 'react-native';
 import firebase from 'firebase';
 
@@ -15,12 +16,22 @@ class LoginScreen extends React.Component {
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then((user) => {
         console.log(user);
-        this.props.navigation.navigate('Home');
+        const resetAction = StackActions.reset({
+          index: 0,
+          actions: [
+            NavigationActions.navigate({ routeName :'Home' }),
+          ],
+        });
+        this.props.navigation.dispatch(resetAction);
       })
       .catch((error) => {
         console.log(error);
       });
     // this.props.navigation.navigate('MemoList');
+  }
+
+  handlePress() {
+    this.props.navigation.navigate('Signup');
   }
 
   render() {
@@ -36,6 +47,7 @@ class LoginScreen extends React.Component {
           autoCapitalize="none"
           autoCorrect={false}
           placeholder="Email Adress"
+          underlineColorAndroid="transparent"
         />
         <TextInput
           style={styles.input}
@@ -45,10 +57,14 @@ class LoginScreen extends React.Component {
           autoCorrect={false}
           placeholder="Password"
           secureTextEntry
+          underlineColorAndroid="transparent"
         />
         <TouchableHighlight style={styles.button} onPress={this.handleSubmit.bind(this)} underlayColor="#C70F66">
           <Text style={styles.buttonTitle}>ログインする</Text>
         </TouchableHighlight>
+        <TouchableOpacity style={styles.signup} onPress={this.handlePress.bind(this)}>
+          <Text style={styles.signupText}>メンバー登録する</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -86,6 +102,13 @@ const styles = StyleSheet.create({
   buttonTitle: {
     color: '#FFF',
     fontSize: 18,
+  },
+  signup: {
+    marginTop: 18,
+    alignSelf: 'center',
+  },
+  signupText: {
+    fontSize: 16,
   },
 });
 

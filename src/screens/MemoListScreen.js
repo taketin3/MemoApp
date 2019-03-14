@@ -22,19 +22,6 @@ class MemoListScreen extends React.Component {
         });
         this.setState({ memoList: tmpList });
       });
-    /*
-      .get()
-      .then((querySnapshot) => {
-        const tmpList = [];
-        querySnapshot.forEach((doc) => {
-          tmpList.push({ ...doc.data(), key: doc.id });
-        });
-        this.setState({ memoList: tmpList });
-      })
-      .catch((error) => {
-        console.log('Error getting documents: ', error);
-      });
-      */
   }
 
   // eslint-disable-next-line

@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavigationActions, StackActions } from 'react-navigation';
 import {
   StyleSheet, View, TextInput, Text, TouchableHighlight,
 } from 'react-native';
@@ -13,7 +14,13 @@ class SignupScreen extends React.Component {
   handleSubmit() {
     firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((user) => {
-        this.props.navigation.navigate('MemoList');
+        const resetAction = StackActions.reset({
+          index: 0,
+          actions: [
+            NavigationActions.navigate({ routeName :'Home' }),
+          ],
+        });
+        this.props.navigation.dispatch(resetAction);
       })
       .catch((error) => {
         console.log(error);
@@ -33,6 +40,7 @@ class SignupScreen extends React.Component {
           autoCapitalize="none"
           autoCorrect={false}
           placeholder="Email Adress"
+          underlineColorAndroid="transparent"
         />
         <TextInput
           style={styles.input}
@@ -42,6 +50,7 @@ class SignupScreen extends React.Component {
           autoCorrect={false}
           placeholder="Password"
           secureTextEntry
+          underlineColorAndroid="transparent"
         />
         <TouchableHighlight style={styles.button} onPress={this.handleSubmit.bind(this)} underlayColor="#C70F66">
           <Text style={styles.buttonTitle}>送信する</Text>
