@@ -26,7 +26,8 @@ class MemoListScreen extends React.Component {
 
   // eslint-disable-next-line
   handlePress() {
-    this.props.navigation.navigate('MemoCreate');
+    this.props.navigation.navigate('BarCode');
+    // this.props.navigation.navigate('MemoCreate');
   }
 
   render() {

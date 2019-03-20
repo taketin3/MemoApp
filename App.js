@@ -1,4 +1,4 @@
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator, createAppContainer, createDrawerNavigator } from 'react-navigation';
 import firebase from 'firebase';
 import { Platform } from 'react-native';
 
@@ -8,6 +8,7 @@ import MemoDetailScreen from './src/screens/MemoDetailScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import MemoEditScreen from './src/screens/MemoEditScreen';
 import MemoCreateScreen from './src/screens/MemoCreateScreen';
+import BarCodeScannerScreen from './src/screens/BarCodeScannerScreen';
 import ENV from './env.json';
 
 // eslint-disable-next-line
@@ -27,12 +28,13 @@ const App = createStackNavigator({
   Login:      { screen: LoginScreen },
   Signup:     { screen: SignupScreen },
   Home:       { screen: MemoListScreen },
+  BarCode:      { screen: BarCodeScannerScreen },
   MemoDetail: { screen: MemoDetailScreen },
   MemoEdit:   { screen: MemoEditScreen },
   MemoCreate:   { screen: MemoCreateScreen },
 }, {
   defaultNavigationOptions: {
-    headerTitle: 'Memot',
+    headerTitle: 'Memottt',
     headerTintColor: '#FFF',
     headerBackTitle: null,
     headerStyle: {
@@ -55,5 +57,6 @@ const App = createStackNavigator({
     },
   },
 });
+
 
 export default createAppContainer(App);
